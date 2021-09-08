@@ -115,5 +115,65 @@ function gameObject () {
     }
 }
 
-
 console.log(gameObject());
+
+function numPointsScored(playerName) {
+    //returns number of points scored by player
+    let x = gameObject();
+    for (let homeAway in x) {
+        let players = x[homeAway]['players'];
+        for (let key in players) {
+                if (key === playerName) {
+                    return x[homeAway]['players'][playerName]['points'];
+                }
+        }
+    }
+}
+
+function shoeSize (playerName) {
+    //returns shoe size for that player
+    let x = gameObject()
+    for (let homeAway in x) {
+        let players = x[homeAway]['players'];
+        for (let key in players) {
+            if (key === playerName) {
+                return x[homeAway]['players'][playerName]['shoe'];
+            }
+        }
+    }
+}
+
+function teamColors (teamName) {
+    //returns array of team colors
+    let x = gameObject();
+    for (let homeAway in x) {
+        if (x[homeAway]['teamName'] === teamName) {
+            return x[homeAway]['colors']
+        }
+    }
+}
+
+function teamNames (object) {
+    //return array of team names
+    let x = object;
+    let arrTeamNames = [];
+    for (let homeAway in x) {
+        arrTeamNames.push(x[homeAway]['teamName']);
+    }
+    return arrTeamNames;
+}
+
+function playerNumbers (teamName) {
+    //returns array of jersey numbers for that team
+    let x = gameObject();
+    for (let homeAway in x) {
+        if (x[homeAway]['teamName'] === teamName) {
+            let jerseyArray = [];
+            let players = x[homeAway]['players'];
+            for (let key in players) {
+                jerseyArray.push(x[homeAway]['players'][key]['number'])
+            }
+            return jerseyArray;
+        }
+    }
+}
