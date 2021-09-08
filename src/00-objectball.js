@@ -177,3 +177,45 @@ function playerNumbers (teamName) {
         }
     }
 }
+
+function playerStats (playerName) {
+    //returns object of playerName's stats
+    let x = gameObject();
+    for (let homeAway in x) {
+        // debugger;
+        let team = x[homeAway];
+        for (let key in team.players) {
+            if (key === playerName) {
+                return team.players[key];
+            }
+        }
+    }
+}
+
+function bigShoeRebounds () {
+    //returns number of rebounds of player with largest shoe size
+    let x = gameObject();
+    let biggestShoeSize = 0;
+    for (let homeAway in x) {
+        //debugger;
+        let team = x[homeAway];
+        for (let key in team.players) {
+            if (team.players[key].shoe > biggestShoeSize) {
+                biggestShoeSize = team.players[key].shoe;
+                let playerWithBiggestShoeSize = key;
+                let bigShoeRebounds = team.players[key]['rebounds'];
+            }
+        }
+    }
+    for (let player in x.home.players) {
+        //debugger;
+        if (x.home.players[player].shoe === biggestShoeSize) {
+            return x.home.players[player].rebounds;
+        }
+    }
+    for (let player in x.away.players) {
+        if (x.away.players[player].shoe === biggestShoeSize) {
+            return x.away.players[player].rebounds;
+        }
+    }
+}
